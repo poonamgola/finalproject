@@ -215,11 +215,18 @@ def signUp(request):
         email = request.POST.get('gmail_id')
         full_name = request.POST.get('full_name')
         username = request.POST.get('username')
+<<<<<<< HEAD
         phone=request.POST.get('phone')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
         if not username or not email or not password or not confirm_password or not full_name or not phone:
+=======
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if not username or not email or not password or not confirm_password or not full_name:
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
             messages.error(request, "All fields are required.")
             return render(request, 'sign-up.html')
 
@@ -239,7 +246,10 @@ def signUp(request):
             email=email,
             full_name=full_name,
             username=username,
+<<<<<<< HEAD
             phone=phone,
+=======
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
             password=make_password(password)
         )
         user.save()
@@ -592,4 +602,8 @@ def PasswordResetConfirm(request, uidb64=None, token=None):
     return render(request, 'password/password_reset_confirm.html', {'uidb64': uidb64, 'token': token})
 
 def PasswordResetDone(request):
+<<<<<<< HEAD
     return render (request,'password/password_reset_done.html')
+=======
+    return render (request,'password/password_reset_done.html')
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9

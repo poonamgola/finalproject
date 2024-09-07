@@ -45,5 +45,9 @@ def pre_save_community_post(sender, instance, **kwargs):
 @receiver(pre_save, sender=CommunityCategory)
 def pre_save_community_category(sender, instance, **kwargs):
     if not instance.slug:
+<<<<<<< HEAD
         instance.slug = slugify(instance.name)
         
+=======
+        instance.slug = slugify(instance.name)
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9

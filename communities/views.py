@@ -12,7 +12,10 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
 @login_required(login_url='signin')
 def Community(request):
     communities = CommunityCategory.objects.all()
@@ -74,6 +77,7 @@ class CommunitySingle(View):
 
 @require_POST
 def like_post(request, post_id):
+<<<<<<< HEAD
     try:
         post = CommunityPost.objects.get(id=post_id)
         post.likes += 1
@@ -92,3 +96,20 @@ def dislike_post(request, post_id):
     except CommunityPost.DoesNotExist:
         return JsonResponse({'error': 'Post not found'}, status=404)
 
+=======
+    post = get_object_or_404(CommunityPost, id=post_id)
+    with transaction.atomic():
+        post.likes = F('likes') + 1
+        post.save(update_fields=['likes'])
+        post.refresh_from_db(fields=['likes'])
+    return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
+
+@require_POST
+def dislike_post(request, post_id):
+    post = get_object_or_404(CommunityPost, id=post_id)
+    with transaction.atomic():
+        post.dislikes = F('dislikes') + 1
+        post.save(update_fields=['dislikes'])
+        post.refresh_from_db(fields=['dislikes'])
+    return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9

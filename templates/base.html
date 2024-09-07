@@ -245,17 +245,29 @@
 
                     {% if not user.is_authenticated %}
                         <!-- Sign In button -->
+<<<<<<< HEAD
                         <li class="nav-item me-2 d-block">
+=======
+                        <li class="nav-item me-2 d-none d-sm-block">
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
                             <a href="{% url 'signin'%}" class="btn btn-sm btn-primary mb-0">Sign In</a>
                         </li>
                         
                         
                         <!-- Sign up button -->
+<<<<<<< HEAD
                         <li class="nav-item me-2 d-block">
                             <a href="{% url 'signUp'%}" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Sign up</a>
                         </li>
                     {% else %}
                         <li class="nav-item me-2 d-block">
+=======
+                        <li class="nav-item me-2 d-none d-sm-block">
+                            <a href="{% url 'signUp'%}" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Sign up</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item me-2 d-none d-sm-block">
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
                             <a href="{% url 'viewProfile' user.username %}" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Profile</a>
                         </li>
                     {% endif %}
@@ -270,7 +282,11 @@
 						</span>
 					</button>
                 </div>
+<<<<<<< HEAD
                 {% comment %} </ul> {% endcomment %}
+=======
+                </ul>
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
 
             </div>
         </nav>

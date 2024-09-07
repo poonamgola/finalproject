@@ -4,7 +4,11 @@
 <!-- **************** MAIN CONTENT START **************** -->
 <!-- Include jQuery from CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<<<<<<< HEAD
 <meta name="csrf-token" content="{{ csrf_token }}">
+=======
+
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
 <!-- Custom CSS -->
 <style>
     button {
@@ -24,11 +28,15 @@
 <!-- Custom JavaScript -->
 <script>
     $(document).ready(function() {
+<<<<<<< HEAD
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
+=======
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
         // Handle like button click
         $('#like-btn').click(function() {
             var postId = $(this).data('post-id');
             $.ajax({
+<<<<<<< HEAD
                 url: '/like/' + postId + '/',  // Ensure this matches your URL pattern
                 type: 'POST',
                 headers: {'X-CSRFToken': csrfToken},  // CSRF token for security
@@ -46,17 +54,38 @@
         }); 
     })
     
+=======
+                url: '/like/' + postId + '/',
+                type: 'POST',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                success: function(response) {
+                    $('#like-btn').text(response.likes);
+                    $('#dislike-btn').text(response.dislikes);
+                    $('#like-btn').addClass('active');
+                    $('#dislike-btn').removeClass('active dislike');
+                }
+            });
+        });
+
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
         // Handle dislike button click
         $('#dislike-btn').click(function() {
             var postId = $(this).data('post-id');
             $.ajax({
+<<<<<<< HEAD
                 url: '/dislike/' + postId + '/',  // Ensure this matches your URL pattern
                 type: 'POST',
                 headers: {'X-CSRFToken': csrfToken},
+=======
+                url: '/dislike/' + postId + '/',
+                type: 'POST',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
                 success: function(response) {
                     $('#like-btn').text(response.likes);
                     $('#dislike-btn').text(response.dislikes);
                     $('#dislike-btn').addClass('active dislike');
+<<<<<<< HEAD
                     $('#like-btn').removeClass('active');               
                 },
                 error: function(xhr, errmsg, err) {
@@ -65,6 +94,14 @@
             });
         });
     
+=======
+                    $('#like-btn').removeClass('active');
+                }
+            });
+        });
+    });
+
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
 
 
     $(document).ready(function() {
@@ -121,8 +158,13 @@
                         <h4 class="mb-0">{{ post.category.name }}</h4>
                         <!-- List -->
                         <div class="hstack gap-3 gap-md-4 flex-wrap mt-3" id="post-{{ post.id }}">
+<<<<<<< HEAD
                             <button id="like-btn" class="icon-btn bi bi-hand-thumbs-up" data-post-id="{{ post.id }}"> {{post.likes}}</button>
                             <button id="dislike-btn" class="icon-btn bi bi-hand-thumbs-down" data-post-id="{{ post.id }}"> {{post.dislikes}} </button>
+=======
+                            <button id="like-btn" class="icon-btn bi bi-hand-thumbs-up" data-post-id="{{ post.id }}"> {{ post.likes }} </button>
+                            <button id="dislike-btn" class="icon-btn bi bi-hand-thumbs-down" data-post-id="{{ post.id }}"> {{ post.dislikes }} </button>
+>>>>>>> ddbddaf907e9fcefac0f5ac3fbb69ec9a3648bb9
                         </div>
                     </div>
                     <!-- Button -->
