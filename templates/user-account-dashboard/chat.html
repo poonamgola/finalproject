@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <title>We Founder - Connecting Local Innovators and Resources</title>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Webestica.com">
+    <meta name="description" content="Technology and Corporate Bootstrap Theme">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+    <!-- Dark mode -->
+    <script>
+        const storedTheme = localStorage.getItem('theme')
+        const getPreferredTheme = () => {
+            if (storedTheme) {
+                return storedTheme
+            }
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+        }
+
+        const setTheme = function(theme) {
+            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', theme)
+            }
+        }
+
+        setTheme(getPreferredTheme())
+
+        window.addEventListener('DOMContentLoaded', () => {
+            var el = document.querySelector('.theme-icon-active');
+            if (el != 'undefined' && el != null) {
+                const showActiveTheme = theme => {
+                    const activeThemeIcon = document.querySelector('.theme-icon-active use')
+                    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+                    const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+                    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                        element.classList.remove('active')
+                    })
+
+                    btnToActive.classList.add('active')
+                    activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+                }
+
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                    if (storedTheme !== 'light' || storedTheme !== 'dark') {
+                        setTheme(getPreferredTheme())
+                    }
+                })
+
+                showActiveTheme(getPreferredTheme())
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', () => {
+                            const theme = toggle.getAttribute('data-bs-theme-value')
+                            localStorage.setItem('theme', theme)
+                            setTheme(theme)
+                            showActiveTheme(theme)
+                        })
+                    })
+
+            }
+        })
+    </script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'theme-assets/images/favicon.png'%}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'theme-assets/vendor/font-awesome/css/all.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theme-assets/vendor/bootstrap-icons/bootstrap-icons.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theme-assets/vendor/swiper/swiper-bundle.min.css'%}">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'theme-assets/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'theme-assets/css/chat.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEXFC3C67M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DEXFC3C67M');
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Header START -->
+    <header class="header-sticky header-absolute">
+        <!-- Logo Nav START -->
+        <nav class="navbar navbar-expand-xl">
+            <div class="container">
+                <!-- Logo START -->
+                <a class="navbar-brand me-0" href="{% url 'home' %}">
+				<img style="height:60px;width:100px" class="light-mode-item navbar-brand-item" src="{% static 'theme-assets/images/logo1.png'%}" alt="logo"> 
+				<img style="height:60px;width:100px" class="dark-mode-item navbar-brand-item" src="{% static 'theme-assets/images/logo4.png'%}" alt="logo"> 
+			</a>
+                <!-- Logo END -->
+
+                <!-- Main navbar START -->
+                <div class="navbar-collapse collapse" id="navbarCollapse">
+                    <ul class="navbar-nav navbar-nav-scroll dropdown-hover mx-auto">
+
+                        <!-- Nav item -->
+                        <li 
+                            class="nav-item"> <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        
+
+                        <!-- Nav item -->
+                        <li 
+                            class="nav-item"> <a class="nav-link" href="{% url 'about' %}">About us</a>
+                        </li>                           
+
+
+                        <!-- Nav item -->
+                        <li 
+                            class="nav-item"> <a class="nav-link" href="{% url "how-it-works" %}">How It Works</a>
+                        </li>                           
+
+                                            
+                        <!-- Nav item -->
+                        <li 
+                            class="nav-item"> <a class="nav-link" href="{% url "communities" %}">Community</a>
+                        </li>  
+                        
+
+                        <!-- Nav item -->
+                        <li 
+                            class="nav-item"> <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+                        </li>
+                        
+
+                        <!-- Nav item -->
+                        <li 
+                            class="nav-item"> <a class="nav-link" href="{% url 'contact' %}">Contact us</a> 
+                        </li>
+                    </ul>
+                </div>
+                <!-- Main navbar END -->
+
+                
+
+<!-- Buttons -->
+<ul class="nav align-items-center dropdown-hover ms-sm-2">
+    {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+            <a href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-bell fa-fw me-2"></i>
+            </a>
+            <ul class="dropdown-menu min-w-auto dropdown-menu-end fixed-width-dropdown">
+                {% for notification in notifications %}
+                    <li>
+                        <a class="dropdown-item" href="{% url 'account_notification' %}?notification_id={{ notification.id }}">
+                            {{ notification.message|safe }}
+                        </a>
+                    </li>
+                    {% if not forloop.last %}
+                        <li><hr class="dropdown-divider"></li>
+                    {% endif %}
+                {% empty %}
+                    <li><a class="dropdown-item" href="#">No new notifications</a></li>
+                {% endfor %}
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a href="{% url 'account_notification' %}" class="btn btn-sm btn-light mb-0 d-grid mt-2">View all</a>
+                </li>
+            </ul>
+        </li>
+    {% endif %}
+</ul>
+
+<style>
+    /* Ensure the dropdown menu has a fixed width */
+    .fixed-width-dropdown {
+        width: 400px; /* Adjust this value as needed */
+        max-height: 400px; /* Optional: Set a maximum height to handle overflow */
+        overflow-y: auto; /* Optional: Add vertical scrollbar if content exceeds max-height */
+    }
+    </style>
+
+
+
+    <!-- Dark mode option START -->
+    <div class="nav-item dropdown dropdown-animation">
+        <button class="btn btn-link mb-0 px-2 lh-1" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-circle-half theme-icon-active fill-mode fa-fw" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                <use href="#"></use>
+            </svg>
+        </button>
+
+        <ul class="dropdown-menu min-w-auto dropdown-menu-end" aria-labelledby="bd-theme">
+            <li class="mb-1">
+                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
+                    <svg width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill fa-fw mode-switch me-1" viewBox="0 0 16 16">
+                        <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                        <use href="#"></use>
+                    </svg>Light
+                </button>
+            </li>
+            <li class="mb-1">
+                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill fa-fw mode-switch me-1" viewBox="0 0 16 16">
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+                        <use href="#"></use>
+                    </svg>Dark
+                </button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half fa-fw mode-switch me-1" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                        <use href="#"></use>
+                    </svg>Auto
+                </button>
+            </li>
+        </ul>
+    </div>
+</ul>
+
+
+                    {% if not user.is_authenticated %}
+                        <!-- Sign In button -->
+                        <li class="nav-item me-2 d-none d-sm-block">
+                            <a href="{% url 'signin'%}" class="btn btn-sm btn-primary mb-0">Sign In</a>
+                        </li>
+                        
+                        
+                        <!-- Sign up button -->
+                        <li class="nav-item me-2 d-none d-sm-block">
+                            <a href="{% url 'signUp'%}" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Sign up</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item me-2 d-none d-sm-block">
+                            <a href="{% url 'viewProfile' user.username %}" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Profile</a>
+                        </li>
+                    {% endif %}
+
+                    <!-- Responsive navbar toggler -->
+                    <div class="nav-item">
+                        <button class="navbar-toggler ms-sm-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-animation">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
+					</button>
+                </div>
+                {% comment %} </ul> {% endcomment %}
+
+            </div>
+        </nav>
+        <!-- Logo Nav END -->
+    </header>
+    {% if user.is_authenticated %}
+        <h5 style="text-align: end; padding-right: 200px;padding-top:100px"></h5>
+        <input type="hidden" id="logged-in-user" value="{{ user.id }}">
+    {% endif %}
+		<div class="container-fluid h-100" style="background-color:white">
+			<div class="row justify-content-center h-100 ">
+				<div class="col-md-4 col-xl-3 chat h-100 mt-4">
+                    <div class="card mb-sm-3 mb-md-0 contacts_card" >
+					<div class="card-header" style="background-color:grey">
+						<div class="input-group">
+                            <input type="text" id="chat-search-input" placeholder="Search..." name="" class="form-control search">
+                            <div class="input-group-prepend">
+                                <span id="chat-search-btn" class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                        
+					</div>
+					<div class="card-body contacts_body">
+                        <!-- Existing chat threads section -->
+                        <ui class="contacts">
+                            {% for thread in threads_with_messages %}
+                                <li class="{% if forloop.first %}active{% endif %} contact-li" chat-id="chat_{{ thread.id }}" style="cursor: pointer">
+                                    <div class="d-flex bd-highlight">
+                                        <div class="img_cont">
+                                            <img src="{{thread.first_person.profile_image.url}}" class="rounded-circle user_img">
+                                            <span class="online_icon"></span>
+                                        </div>
+                                        <div class="user_info">
+                                            {% comment %} <span>{{ other_user.username }}</span> {% endcomment %}
+                                            {% if thread.first_person == request.user %}
+                                                <span>{{ thread.second_person.username }}</span>
+                                            {% else %}
+                                                <span>{{ thread.first_person.username }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ui>
+                    </div>
+					<div class="card-footer" style="background-color:grey"></div>
+				</div></div>
+				<div class="col-md-8 col-xl-6 chat h-100 mt-4" >
+					<div class="card" style="background-color:grey">
+                        {% for thread in threads_with_messages %}
+                            <div class="messages-wrapper  {% if forloop.first %}hide is_active{% else %}hide{% endif %}" chat-id="chat_{{ thread.id }}" other-user-id="
+                                        {% if thread.first_person == user %}
+                                            {{ thread.second_person.id }}
+                                        {% else %}
+                                            {{ thread.first_person.id }}
+                                        {% endif %}
+                                    ">
+                                <div class="card-header msg_head" style="background-color:grey">
+                                    <div class="d-flex bd-highlight">
+                                        <div class="img_cont">
+                                            <img src="{{thread.first_person.profile_image.url}}" class="rounded-circle user_img">
+                                            <span class="online_icon"></span>
+                                        </div>
+                                        <div class="user_info">
+                                            {% if thread.first_person == user %}
+                                                    <span>Chat with {{ thread.second_person.username }}</span>
+                                            {% else %}
+                                                <span>Chat with {{ thread.first_person.username }}</span>
+                                            {% endif %}
+
+                                            <p>{{ thread.chatmessage_thread.all.count }} messages</p>
+                                        </div>
+                                        <!-- <div class="video_cam">
+                                            <span><i class="fas fa-video"></i></span>
+                                            <span><i class="fas fa-phone"></i></span>
+                                        </div> -->
+                                    </div>
+                                    <!-- <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+                                    <div class="action_menu">
+                                        <ul>
+                                            <li><i class="fas fa-user-circle"></i> View profile</li>
+                                            <li><i class="fas fa-users"></i> Add to close friends</li>
+                                            <li><i class="fas fa-plus"></i> Add to group</li>
+                                            <li><i class="fas fa-ban"></i> Block</li>
+                                        </ul>
+                                    </div> -->
+                                </div>
+
+                                <div class="card-body msg_card_body">
+                                    {% for chat in thread.chatmessage_thread.all %}
+                                        {% if chat.user == user %}
+                                            <div class="d-flex mb-4 replied">
+                                                <div class="msg_cotainer_send">
+                                                    {{ chat.message }}
+                                                    <span class="msg_time_send">{{ chat.timestamp|date:"d D" }}, {{ chat.timestamp|time:"H:i" }}</span>
+                                                </div>
+                                            <div class="img_cont_msg">
+                                                <img src="{{user.profile_image.url}}" class="rounded-circle user_img_msg">                                            </div>
+                                        </div>
+                                        {% else %}
+                                            <div class="d-flex mb-4 received">
+                                            <div class="img_cont_msg">
+                                                <img src="{{thread.first_person.profile_image.url}}" class="rounded-circle user_img_msg">
+                                            </div>
+                                            <div class="msg_cotainer">
+                                                {{ chat.message }}
+                                                <span class="msg_time">{{ chat.timestamp|date:"d D" }}, {{ chat.timestamp|time:"H:i" }}</span>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+					        </div>
+                        {% endfor %}
+                        <div class="card-footer" style="background-color:grey">
+                                <form id="send-message-form">
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                                        </div>
+                                        <input type="text" name="" id="input-message" class="form-control type_msg" placeholder="Type your message...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">
+                                                <span class="input-group-text send_btn">
+                                                    <i class="fas fa-location-arrow"></i>
+                                                </span>
+                                            </button>
+
+                                        </div>
+                                </div>
+                                </form>
+                            </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+    </body>
+    </html>
+
+        {% comment %} {% endblock %} {% endcomment %}
+        {% block JavaScript %}
+        <script src="{% static 'theme-assets/js/chat.js' %}"></script>
+        <script>
+            document.getElementById('chat-search-btn').addEventListener('click', function() {
+                let searchTerm = document.getElementById('chat-search-input').value.toLowerCase();
+                let chatContacts = document.querySelectorAll('.contacts li');
+    
+                chatContacts.forEach(function(contact) {
+                    let contactName = contact.querySelector('.user_info span').textContent.toLowerCase();
+                    
+                    if (contactName.includes(searchTerm)) {
+                        contact.style.display = '';  // Show contact
+                    } else {
+                        contact.style.display = 'none';  // Hide contact
+                    }
+                });
+            });
+    
+            document.getElementById('chat-search-input').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    document.getElementById('chat-search-btn').click();
+                }
+            });
+        </script>
+        {% endblock JavaScript %}
+        {% comment %} {% endblock %} {% endcomment %}
